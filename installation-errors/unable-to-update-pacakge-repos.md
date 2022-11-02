@@ -1,4 +1,4 @@
-## Error
+# Error
 
 Downloaded debian installer for protonvpn and installed the package with apt:
 `sudo apt install "$(pwd)"/protonvpn-stable-release_1.0.3_all.deb`
@@ -28,7 +28,12 @@ E: Failed to fetch https://repo.protonvpn.com/debian/dists/stable/main/binary-al
 E: Some index files failed to download. They have been ignored, or old ones used instead.
 ```
 
+### Theory
+
+1. The mirror hosting the protonvpn package is currently being synchronised. Updating the package later may be a quick fix. As well as  clearing apt cache after a wait.
+
 ### Fixes attempted:
+
 1. Changed the download source in software and update to main as per [this recommendation](https://askubuntu.com/questions/1182803/what-causes-failed-to-fetch-file-has-unexpected-size-mirror-sync-progress)
 2. Added the reposiroty in /etc/apt/sources.list and ran `sudo apt update` to no avail
 3. Ensured the web server was not down: `ping 104.21.34.42`
@@ -44,3 +49,9 @@ PING 104.21.34.42 (104.21.34.42) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3006ms
 rtt min/avg/max/mdev = 5.933/9.812/13.440/3.305 ms
 ```
+4. Upgraded packages and rebooted vm, to no avail
+5. Cleared apt cache: `sudo apt-get clean`
+
+### Questions asked
+1. [Reddit - Unable to update upstream package repositories - protonvpn](https://www.reddit.com/r/linuxquestions/comments/yk8gov/unable_to_update_upstream_package_repositories/)
+2. [Stackverflow - Unable to update upstream package repositories - protonvpn](https://stackoverflow.com/questions/74291868/unable-to-update-upstream-package-repositories-protonvpn)
